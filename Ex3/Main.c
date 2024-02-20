@@ -8,19 +8,24 @@ scanf("%d",&user);
 StrList* myList= StrList_alloc();
 
 while (user!=0){
-
-if(user==1){
+  int word_size=10;
     int len_words;
+if(user==1){
+   char *word= (char*)(malloc)(word_size*sizeof(char));
     scanf("%d",&len_words);
+    char ch;
     for(int i=0; i<len_words; i++){
-       char *temp;
-       temp= (char *)malloc(50*sizeof(char));
-       scanf("%s",temp);  
-       StrList_insertLast(myList,temp); 
-          free(temp);
-        } 
-      }
-
+      scanf("%c",&ch);
+     while(ch!='\n' && ch!=EOF){
+          if(ch==' '){break;}
+          word[word_size++]=ch;
+          word=(char*)realloc(word,word_size*sizeof(char));
+          }
+        word[word_size]='\0';
+        StrList_insertLast(myList,word);
+          }
+        }
+      
      if(user==2){
         int index;
         char* word = (char*)malloc(sizeof(char) * 50);
