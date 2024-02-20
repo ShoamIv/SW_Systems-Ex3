@@ -1,37 +1,41 @@
 #include <stdio.h>
 #include "StrList.h"
+#include <ctype.h>
+char* word_scan(){
+      int str_size=0;
+      char* word = NULL;
+      char curr_ch;
+
+             while (scanf("%c", &curr_ch) == 1 && isspace(curr_ch)){
+                while(!isspace(curr_ch)){
+                  word=realloc(word,(str_size+1) * sizeof(char));
+                    word[str_size++]= curr_ch;
+                  if (scanf("%c", &curr_ch)!=1){
+                    break;
+                    }
+                }
+             } 
+                  word=realloc(word,(str_size+1)*sizeof(char));
+                  word[str_size] = '\0';
+                  return word;
+        }
 
 int main(){
-
 int user;
-scanf("%d",&user);
 StrList* myList= StrList_alloc();
+scanf("%d", &user);
 
 while (user!=0){
-    int len_words;
-if(user==1){
-    int word_size=100;
-   char *word= (char*)(malloc)(word_size*sizeof(char));
-    scanf("%d",&len_words);
-    char ch;
-    int j=0;
-    int counter=0;
-    while(counter!=len_words){
-      scanf(" %c", &ch);
-     while(ch!='\n' && ch!=EOF){
-      while(j>=word_size){
-        word_size*=2; 
-        word=(char*)realloc(word,word_size*sizeof(char));
-      }
-          if(ch==' '){break;}
-          word[j++]=ch;
-          }
-        word[j]='\0';
-        StrList_insertLast(myList,word);
-        counter++;
-          }
-          break;
+
+    if(user==1){
+      int len_words;
+      scanf("%d", &len_words);
+        for(int i=0; i<len_words; i++){
+            char* word=word_scan();
+            StrList_insertLast(myList,word);
+            free(word);
         }
+      }
       
      if(user==2){
         int index;
