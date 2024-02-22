@@ -98,9 +98,10 @@ void StrList_printAt(const StrList* Strlist,int index){
 int StrList_printLen(const StrList* Strlist){
     int len=0;
     Node* p=Strlist->_head;
-    for(int i=0; i<Strlist->_size; i++) {
-        int word_len = strlen((const char *) p);
+        while(p!=NULL){
+        int word_len = strlen(p->w);
         len+=word_len;
+        p=p->_next;
     }
     return len;
 }
