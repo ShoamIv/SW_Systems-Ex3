@@ -49,7 +49,7 @@ int main()
      if(user==2){
         int index;
         char* word ;
-        scanf("%d",&index);
+        scanf(  "%d",&index);
         word = scan_word();
         StrList_insertAt(myList,word,index);
      }

@@ -89,9 +89,8 @@ void StrList_print(const StrList* StrList){
 void StrList_printAt(const StrList* Strlist,int index){
     if(index>Strlist->_size)return;
     Node* p=Strlist->_head;
-    int i=0;
-    while(i!=index-1){
-        p=p->_next;i++;
+   for(int i=0; i<index; i++){
+        p=p->_next;
     }
     printf("%s\n",p->w);
 }
