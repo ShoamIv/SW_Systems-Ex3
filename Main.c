@@ -7,7 +7,9 @@ char* scan_word()
     char* word = NULL;
     int word_size = 0;
     char ch;
-    while (scanf("%c", &ch) == 1 && isspace(ch));
+    do{
+    }while (scanf("%c", &ch) == 1 && isspace(ch));
+    
         while (!isspace(ch)){
         char* temp = realloc(word, (word_size + 1) * sizeof(char));
         if(temp==NULL){
@@ -18,8 +20,8 @@ char* scan_word()
         if (scanf("%c", &ch) != 1)
         {
             break;
+            }
         }
-    }
     char* temp = realloc(word, (word_size + 1) * sizeof(char));
     if(temp==NULL){
         free(word);return NULL;

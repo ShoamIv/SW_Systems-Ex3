@@ -194,29 +194,28 @@ void StrList_reverse( StrList* StrList){
     }
 StrList->_head = prev;
 }
-void swap(Node* a, Node* b) {
-    char* comp = (char*)a->w;
-        a->w = b->w;
-        b->w = comp;
-}
 /**
  * Simple bubble sort in order to sort the list in lexicographic order.
- * @param StrList
  */
 void StrList_sort( StrList* StrList){
+    if(StrList ==NULL || StrList->_size<=1){return;}
     Node* curr=StrList->_head;
-    int swap_flag=1;
-    while(swap_flag==1 && curr->_next!=NULL){
-        swap_flag=0;
-            for(int i=0; i<StrList->_size-1; i++) {
-                if (strcmp(curr->w, curr->_next->w) > 0) {
-                    swap(curr, curr->_next);
-                    swap_flag = 1;
-                   curr=curr->_next;
-            }
+     while(curr!=NULL){
+        Node* curr_in=StrList->_head;
+            while(curr_in->_next!=NULL){
+                if (strcmp(curr_in->w, curr_in->_next->w) > 0) {
+                    char* tmp=curr_in->w;
+                    curr_in->w=curr_in->_next->w;
+                    curr_in->_next->w=tmp;    
+                }
+             curr_in=curr_in->_next;
         }
+            curr=curr->_next;
     }
 }
+/*
+checks if the list sorted.
+*/
 int StrList_isSorted(StrList* StrList){
  Node* curr=StrList->_head;
     while(curr->_next!=NULL){
