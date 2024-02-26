@@ -80,8 +80,8 @@ return StrList->_head->w;
 }
 void StrList_print(const StrList* StrList){
     Node* p=StrList->_head;
-    while(p->!=NULL){
-	if(p->next!=NULL){
+     while(p!=NULL){
+	if(p->_next!=NULL){
 	printf("%s ",p->w);
 	}else{
   	  printf("%s",p->w);
