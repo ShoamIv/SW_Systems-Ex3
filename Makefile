@@ -3,8 +3,7 @@
 CC = gcc
 
 #Warrnings
-CFLAGS= -g -Wall]
-
+CFLAGS= -g -Wall
 Main.o:	Main.c StrList.h
 	$(CC) $(CFLAGS) -c Main.c
 
