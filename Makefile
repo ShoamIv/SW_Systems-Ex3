@@ -13,6 +13,8 @@ StrList.o: StrList.c StrList.h
 StrList: StrList.o Main.o
 	$(CC) $(CFLAGS) StrList.o Main.o -o StrList
 
+all:StrList
+
 clean:
 	rm -f *.o
 	rm -f *.a	
