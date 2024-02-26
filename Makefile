@@ -4,6 +4,9 @@ CC = gcc
 
 #Warrnings
 CFLAGS= -g -Wall
+
+all: StrList
+
 Main.o:	Main.c StrList.h
 	$(CC) $(CFLAGS) -c Main.c
 
