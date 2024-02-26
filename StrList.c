@@ -2,15 +2,20 @@
 #include <stdlib.h>
 #include <string.h>
 #include "StrList.h"
-typedef struct _node {
+
+/**
+ * Execute StrList.h as required.
+ */
+
+typedef struct node {
 char* w;
-struct _node* _next;
+struct node* _next;
 }Node;
 
-typedef struct _StrList{
+ struct _StrList{
     Node* _head;
     size_t _size;
-}StrList;
+};
 
 
 StrList* StrList_alloc(){
@@ -80,15 +85,10 @@ return StrList->_head->w;
 }
 void StrList_print(const StrList* StrList){
     Node* p=StrList->_head;
-     while(p!=NULL){
-	if(p->_next!=NULL){
-	printf("%s ",p->w);
-	}else{
-  	  printf("%s",p->w);
-	}
-        p=p->_next;
-    }
-	
+    while(p!=NULL) {
+        printf("%s ", p->w);
+        p = p->_next;
+        }
     printf("\n");
 }
 void StrList_printAt(const StrList* Strlist,int index){
@@ -199,28 +199,29 @@ void StrList_reverse( StrList* StrList){
     }
 StrList->_head = prev;
 }
+void swap(Node* a, Node* b) {
+    char* comp = (char*)a->w;
+        a->w = b->w;
+        b->w = comp;
+}
 /**
  * Simple bubble sort in order to sort the list in lexicographic order.
+ * @param StrList
  */
 void StrList_sort( StrList* StrList){
-    if(StrList ==NULL || StrList->_size<=1){return;}
     Node* curr=StrList->_head;
-     while(curr!=NULL){
-        Node* curr_in=StrList->_head;
-            while(curr_in->_next!=NULL){
-                if (strcmp(curr_in->w, curr_in->_next->w) > 0) {
-                    char* tmp=curr_in->w;
-                    curr_in->w=curr_in->_next->w;
-                    curr_in->_next->w=tmp;    
-                }
-             curr_in=curr_in->_next;
+    int swap_flag=1;
+    while(swap_flag==1 && curr->_next!=NULL){
+        swap_flag=0;
+            for(int i=0; i<StrList->_size-1; i++) {
+                if (strcmp(curr->w, curr->_next->w) > 0) {
+                    swap(curr, curr->_next);
+                    swap_flag = 1;
+                   curr=curr->_next;
+            }
         }
-            curr=curr->_next;
     }
 }
-/*
-checks if the list sorted.
-*/
 int StrList_isSorted(StrList* StrList){
  Node* curr=StrList->_head;
     while(curr->_next!=NULL){
