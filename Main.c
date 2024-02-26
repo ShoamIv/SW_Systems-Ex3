@@ -7,33 +7,34 @@
  * This function will reallocate space for each character.
  * @return
  */
+
 char* scan_word()
 {
     char* word = NULL;
     int word_size = 0;
     char ch;
-    do {
+    do{
     }while (scanf("%c", &ch) == 1 && isspace(ch));
-        while (!isspace(ch)) {
-            char *temp = realloc(word, (word_size + 1) * sizeof(char));
-            if (temp == NULL) {
-                free(word);
-                return NULL;
-            }
-            word = temp;
-            word[word_size++] = ch;
-            if (scanf("%c", &ch) != 1) {
-                break;
+    
+        while (!isspace(ch)){
+        char* temp = realloc(word, (word_size + 1) * sizeof(char));
+        if(temp==NULL){
+            free(word);return NULL;
+        }
+        word=temp;
+        word[word_size++] = ch;
+        if (scanf("%c", &ch) != 1)
+        {
+            break;
             }
         }
-        char *temp = realloc(word, (word_size + 1) * sizeof(char));
-        if (temp == NULL) {
-            free(word);
-            return NULL;
-        }
-        word = temp;
-        word[word_size] = '\0';
-        return word;
+    char* temp = realloc(word, (word_size + 1) * sizeof(char));
+    if(temp==NULL){
+        free(word);return NULL;
+    }
+    word=temp;
+    word[word_size] = '\0';
+    return word;
 }
 /**
  * The main function that responsible for our "menu".
